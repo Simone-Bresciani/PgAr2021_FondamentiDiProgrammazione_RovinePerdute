@@ -14,6 +14,9 @@ public class Posizione {
         this.h = h;
     }
 
+    //metodo cosrtruttore di una Posizione con gli attributi settati ai valori di default
+    public Posizione(){ }
+
     //get e set
     public int getX() {
         return x;

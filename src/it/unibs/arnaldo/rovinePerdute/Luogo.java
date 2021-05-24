@@ -18,6 +18,9 @@ public class Luogo {
         this.connessioni = connessioni;
     }
 
+    //metodo cortruttore di un luogo con gli attributi settati ai valori di default
+    public  Luogo() { }
+
     //get e set
     public int getId() {
         return id;
