@@ -1,6 +1,7 @@
 package it.unibs.arnaldo.rovinePerdute;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Luogo {
 
@@ -8,14 +9,12 @@ public class Luogo {
     private int id;
     private String nome;
     private Posizione posizione;
-    private ArrayList<Integer> connessioni;
 
     //costruttore
-    public Luogo(int id, String nome, Posizione posizione, ArrayList<Integer> connessioni) {
+    public Luogo(int id, String nome, Posizione posizione) {
         this.id = id;
         this.nome = nome;
         this.posizione = posizione;
-        this.connessioni = connessioni;
     }
 
     //metodo cortruttore di un luogo con gli attributi settati ai valori di default
@@ -46,11 +45,4 @@ public class Luogo {
         this.posizione = posizione;
     }
 
-    public ArrayList<Integer> getConnessioni() {
-        return connessioni;
-    }
-
-    public void setConnessioni(ArrayList<Integer> connessioni) {
-        this.connessioni = connessioni;
-    }
 }
