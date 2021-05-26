@@ -5,9 +5,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Grafo {
-    //ATTRIBUTI
+    //ATTRIBUTI costanti perchè il grafo non potrà essere modificato
     private final Set<Luogo> nodi;
-    //              <id luogo, id luoghi connessi>
+    //              <id luogo, set di id luoghi connessi>
     private final Map<Integer, Set<Integer>> archi;
 
     //COSTRUTTORE

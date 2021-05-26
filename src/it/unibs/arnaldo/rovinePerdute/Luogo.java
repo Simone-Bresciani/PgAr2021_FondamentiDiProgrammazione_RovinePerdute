@@ -1,8 +1,5 @@
 package it.unibs.arnaldo.rovinePerdute;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class Luogo {
 
     //attributi
@@ -10,14 +7,21 @@ public class Luogo {
     private String nome;
     private Posizione posizione;
 
-    //costruttore
+    /**
+     * <h3>Metodo corstruttore per un Luogo</h3>
+     * @param id codice univoco associato al luogo
+     * @param nome nominativo del luogo
+     * @param posizione coordinata composta da x, y e h (ovvero l'altitudine)
+     */
     public Luogo(int id, String nome, Posizione posizione) {
         this.id = id;
         this.nome = nome;
         this.posizione = posizione;
     }
 
-    //metodo cortruttore di un luogo con gli attributi settati ai valori di default
+    /**
+     * <h3>Metodo per la creazione di un Luogo con i valori di default</h3>
+     */
     public  Luogo() { }
 
     //get e set
