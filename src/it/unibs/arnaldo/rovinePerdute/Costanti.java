@@ -32,4 +32,7 @@ public class Costanti {
 
     //GESTIONE MAIN
     public static final String ERR_ID_NON_TROVATO = "id non trovato:(";
+    public static final String TONATHIU = "tonathiu";
+    public static final String METZTLI = "metztli";
+
 }
