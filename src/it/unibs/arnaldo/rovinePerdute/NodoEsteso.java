@@ -34,6 +34,35 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
         this.carburante_stimato = carburante_stimato;
     }
 
+    //GET E SET
+    public Luogo getLuogo_corrente() {
+        return luogo_corrente;
+    }
+
+    public Luogo getLuogo_precedente() {
+        return luogo_precedente;
+    }
+
+    public void setLuogo_precedente(Luogo luogo_precedente) {
+        this.luogo_precedente = luogo_precedente;
+    }
+
+    public int getCarburante_utilizzato() {
+        return carburante_utilizzato;
+    }
+
+    public void setCarburante_utilizzato(int carburante_utilizzato) {
+        this.carburante_utilizzato = carburante_utilizzato;
+    }
+
+    public int getCarburante_stimato() {
+        return carburante_stimato;
+    }
+
+    public void setCarburante_stimato(int carburante_stimato) {
+        this.carburante_stimato = carburante_stimato;
+    }
+
     /**
      * <h3>Metodo per la comparazione del carburante stimato tra due Luoghi(nodi) per arrivare a destinazione</h3>
      * @param nodo_da_comparare altro nodo da valutare

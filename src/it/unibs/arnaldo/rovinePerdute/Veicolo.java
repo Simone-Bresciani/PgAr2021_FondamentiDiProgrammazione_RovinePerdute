@@ -36,8 +36,10 @@ public class Veicolo implements Carburante{
     public int calcolaCarburante(Luogo luogo_partenza, Luogo luogo_arrivo, String tipologia) {
         switch (tipologia){
             case Costanti.METZTLI:
+
                 break;
             case Costanti.TONATHIU:
+
                 break;
         }
         return 0;

@@ -6,7 +6,6 @@ import java.util.regex.PatternSyntaxException;
 public class Costanti {
 
     //GESTIONE FILE XML
-
     //nomi file
     public static final String FILE_5_CITTA = "src/it/unibs/arnaldo/rovinePerdute/test_file/PgAr_Map_5.xml";
     public static final String FILE_12_CITTA = "src/it/unibs/arnaldo/rovinePerdute/test_file/PgAr_Map_12.xml";
@@ -29,6 +28,7 @@ public class Costanti {
     //errori vari
     public static final String ERRORE_INIZIALIZZAZIONE_READER = "Errore nell'inizializzazione del reader: ";
     public static final String ERRORE_LETTURA_FILE = "Errore nella lettura del file: %s, per ulteriori info: %s\n";
+    public static final String ERRORE_STRADA = "Errore strada non trovata :(";
 
     //GESTIONE MAIN
     public static final String ERR_ID_NON_TROVATO = "id non trovato:(";
