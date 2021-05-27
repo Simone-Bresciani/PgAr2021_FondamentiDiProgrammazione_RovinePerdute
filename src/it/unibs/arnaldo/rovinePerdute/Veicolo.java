@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class Veicolo{
     //ATTRIBUTI
-    private int fuel;
+    private double fuel;
     private ArrayList<Integer> route;
     private String tipologia;
 
-    public Veicolo(int fuel, ArrayList<Integer> route, String tipologia) {
-        this.fuel = fuel;
+    public Veicolo(ArrayList<Integer> route, String tipologia) {
+        this.fuel = 0d;
         this.route = route;
         this.tipologia = tipologia;
     }
 
-    public int getFuel() {
+    public double getFuel() {
         return fuel;
     }
 
-    public void setFuel(int fuel) {
+    public void setFuel(double fuel) {
         this.fuel = fuel;
     }
 

@@ -68,6 +68,7 @@ public class Navigatore {
                             nodo_connesso.setCarburante_utilizzato(carburante_fino_connessione);
                             nodo_connesso.setCarburante_stimato(carburante_fino_connessione + calcolaCarburante(luogo_connesso, luogo_arrivo, veicolo.getTipologia()));
                             percorso_queue.add(nodo_connesso);
+                            veicolo.setFuel(carburante_fino_connessione);
                         }
                     }
             );

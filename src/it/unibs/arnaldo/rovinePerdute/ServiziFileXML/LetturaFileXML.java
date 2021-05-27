@@ -114,6 +114,7 @@ public class LetturaFileXML {
                 }
                 xmlreader.next();
             }
+            System.out.println(Costanti.FINE_LETTURA_DOC);
         } catch (XMLStreamException e) {
             System.out.printf(Costanti.ERRORE_LETTURA_FILE, filename, e.getMessage());
         }

@@ -16,13 +16,21 @@ public class Grafo {
         this.archi = archi;
     }
 
+    /**
+     * <h3>Metodo che comunica il numeor dei nodi(città) present nel grafo</h3>
+     * @return numero dei nodi presenti nel set
+     */
+    public int getNumeroNodi(){
+        return this.nodi.size();
+    }
+
     //METODI
    /**
      * <h3>Metodo che dato l'id ritorna il luogo corrispondente</h3>
      * @param id_da_cercare rappresenta l'id del luogo da cercare
      * @return luogo che corrisponde all'id inserito
      */
-    public Luogo getNodi(int id_da_cercare) {
+    public Luogo getNodo(int id_da_cercare) {
         return nodi.stream() //genera un flusso di nodi (da analizzare)
                 .filter(nodo -> nodo.getId() == id_da_cercare) //tramite un filtro controlla l'id di ogni nodo, se è uguale all'id da cercare crea uno stream con il nodo trovato
                 .findFirst() //ritorna il primo elemento dello stream generato dal filtro
@@ -36,7 +44,7 @@ public class Grafo {
      */
     public Set<Luogo> getArchi(Luogo nodo_da_cercare) {
         return archi.get(nodo_da_cercare.getId()).stream() //ricava la value dalla key nodo e genera un flusso di connessioni
-                    .map(this::getNodi) //ritorna uno stream dopo aver applicato il metodo getNode ad ogni oggetto
+                    .map(this::getNodo) //ritorna uno stream dopo aver applicato il metodo getNode ad ogni oggetto
                     .collect(Collectors.toSet()); //trasforma lo stream in un Set
 
     }
