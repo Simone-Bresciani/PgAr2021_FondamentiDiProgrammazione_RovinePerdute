@@ -2,11 +2,17 @@ package it.unibs.arnaldo.rovinePerdute;
 
 import java.util.ArrayList;
 
-public class Veicolo implements Carburante{
+public class Veicolo{
     //ATTRIBUTI
     private int fuel;
     private ArrayList<Integer> route;
     private String tipologia;
+
+    public Veicolo(int fuel, ArrayList<Integer> route, String tipologia) {
+        this.fuel = fuel;
+        this.route = route;
+        this.tipologia = tipologia;
+    }
 
     public int getFuel() {
         return fuel;
@@ -32,16 +38,4 @@ public class Veicolo implements Carburante{
         this.tipologia = tipologia;
     }
 
-    @Override
-    public int calcolaCarburante(Luogo luogo_partenza, Luogo luogo_arrivo, String tipologia) {
-        switch (tipologia){
-            case Costanti.METZTLI:
-
-                break;
-            case Costanti.TONATHIU:
-
-                break;
-        }
-        return 0;
-    }
 }

@@ -5,8 +5,8 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
     //attributi
     private final Luogo luogo_corrente;
     private Luogo luogo_precedente;
-    private int carburante_utilizzato;
-    private int carburante_stimato;
+    private double carburante_utilizzato;
+    private double carburante_stimato;
 
     /**
      * <h3>Metodo per la creazione <b>iniziale</b> di un nodo del grafo, infatti il metodo vuole solo il nodo corrente, senza le informazioni aggiuntive.<br>
@@ -16,8 +16,8 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
     public NodoEsteso(Luogo luogo_corrente) {
         this.luogo_corrente = luogo_corrente;
         this.luogo_precedente = null;
-        this.carburante_utilizzato = Integer.MAX_VALUE;
-        this.carburante_stimato = Integer.MAX_VALUE;
+        this.carburante_utilizzato = Double.POSITIVE_INFINITY;
+        this.carburante_stimato = Double.POSITIVE_INFINITY;
     }
 
     /**
@@ -27,7 +27,7 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
      * @param carburante_utilizzato carburante utilizzato fino ad arrivare al luogo corrente
      * @param carburante_stimato carburante stimato fino ad arrivare a destinazione
      */
-    public NodoEsteso(Luogo luogo_corrente, Luogo luogo_precedente, int carburante_utilizzato, int carburante_stimato) {
+    public NodoEsteso(Luogo luogo_corrente, Luogo luogo_precedente, double carburante_utilizzato, double carburante_stimato) {
         this.luogo_corrente = luogo_corrente;
         this.luogo_precedente = luogo_precedente;
         this.carburante_utilizzato = carburante_utilizzato;
@@ -47,11 +47,11 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
         this.luogo_precedente = luogo_precedente;
     }
 
-    public int getCarburante_utilizzato() {
+    public double getCarburante_utilizzato() {
         return carburante_utilizzato;
     }
 
-    public void setCarburante_utilizzato(int carburante_utilizzato) {
+    public void setCarburante_utilizzato(double carburante_utilizzato) {
         this.carburante_utilizzato = carburante_utilizzato;
     }
 

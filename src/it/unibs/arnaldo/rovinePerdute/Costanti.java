@@ -29,6 +29,7 @@ public class Costanti {
     public static final String ERRORE_INIZIALIZZAZIONE_READER = "Errore nell'inizializzazione del reader: ";
     public static final String ERRORE_LETTURA_FILE = "Errore nella lettura del file: %s, per ulteriori info: %s\n";
     public static final String ERRORE_STRADA = "Errore strada non trovata :(";
+    public static final String ERRORE_TIPOLOGIA = "Tipologia non esistente";
 
     //GESTIONE MAIN
     public static final String ERR_ID_NON_TROVATO = "id non trovato:(";

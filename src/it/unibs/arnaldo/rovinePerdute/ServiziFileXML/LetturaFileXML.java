@@ -1,9 +1,6 @@
 package it.unibs.arnaldo.rovinePerdute.ServiziFileXML;
 
-import it.unibs.arnaldo.rovinePerdute.Costanti;
-import it.unibs.arnaldo.rovinePerdute.Grafo;
-import it.unibs.arnaldo.rovinePerdute.Luogo;
-import it.unibs.arnaldo.rovinePerdute.Posizione;
+import it.unibs.arnaldo.rovinePerdute.*;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;

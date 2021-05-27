@@ -5,10 +5,11 @@ import java.util.*;
 public class Navigatore {
 
     //ATTRIBUTI
-    private Grafo grafo;
-    private Carburante carburante_prossimo_nodo;
-    private Carburante carburante_al_termine;
+    private final Grafo grafo;
 
+    public Navigatore(Grafo grafo) {
+        this.grafo = grafo;
+    }
 
     public ArrayList<Luogo> trovaPercorso(Luogo luogo_partenza, Luogo luogo_arrivo, Veicolo veicolo){
         //creo una Queue che sarà il mio percorso
@@ -16,6 +17,7 @@ public class Navigatore {
         //creo una Map che associa al Luogo il suo NodoEsteso, ovvero il Luogo con le info aggiuntive
         //questa map salverà tutti i luoghi visitati fin ora
         Map<Luogo, NodoEsteso> nodi_visitati = new HashMap<>();
+        double carburante = calcolaCarburante(luogo_partenza, luogo_arrivo, veicolo.getTipologia());
         //creo il primo nodo con formazioni aggiuntive, sarà il nodo di luogo_partenza
         NodoEsteso nodo_partenza = new NodoEsteso(luogo_partenza, null, 0, carburante_al_termine.calcolaCarburante(luogo_partenza, luogo_arrivo, veicolo.getTipologia()));
         //lo aggiungo al percorso
@@ -63,12 +65,28 @@ public class Navigatore {
                         if(carburante_fino_connessione < nodo_connesso.getCarburante_utilizzato()){
                             nodo_connesso.setLuogo_precedente(nodo_ripartenza.getLuogo_corrente());
                             nodo_connesso.setCarburante_utilizzato(carburante_fino_connessione);
-                            nodo_connesso.setCarburante_stimato(carburante_fino_connessione + this.carburante_al_termine.calcolaCarburante(luogo_connesso, luogo_arrivo, veicolo.getTipologia()));
+                            nodo_connesso.setCarburante_stimato(carburante_fino_connessione + calcolaCarburante(luogo_connesso, luogo_arrivo, veicolo.getTipologia()));
                             percorso_queue.add(nodo_connesso);
                         }
                     }
             );
         }
         throw new IllegalStateException(Costanti.ERRORE_STRADA);
+    }
+
+    private static double calcolaCarburante(Luogo luogo_partenza, Luogo luogo_arrivo, String tipologia){
+        switch (tipologia){
+            case Costanti.METZTLI:
+                int h1 = luogo_partenza.getPosizione().getH();
+                int h2 = luogo_arrivo.getPosizione().getH();
+                return Math.abs(h1-h2);
+            case Costanti.TONATHIU: //distanza euclidea
+                int x1 = luogo_partenza.getPosizione().getX();
+                int x2 = luogo_arrivo.getPosizione().getX();
+                int y1 = luogo_partenza.getPosizione().getY();
+                int y2 = luogo_arrivo.getPosizione().getY();
+                return (Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2)));
+            default: throw new IllegalArgumentException(Costanti.ERRORE_TIPOLOGIA);
+        }
     }
 }
