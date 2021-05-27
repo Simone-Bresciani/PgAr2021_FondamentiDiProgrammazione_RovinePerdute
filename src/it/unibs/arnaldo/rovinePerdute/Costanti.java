@@ -1,8 +1,5 @@
 package it.unibs.arnaldo.rovinePerdute;
 
-import javax.print.StreamPrintServiceFactory;
-import java.util.regex.PatternSyntaxException;
-
 public class Costanti {
 
     //GESTIONE FILE XML

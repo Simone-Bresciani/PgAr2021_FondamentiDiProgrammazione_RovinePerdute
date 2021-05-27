@@ -55,11 +55,11 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
         this.carburante_utilizzato = carburante_utilizzato;
     }
 
-    public int getCarburante_stimato() {
+    public double getCarburante_stimato() {
         return carburante_stimato;
     }
 
-    public void setCarburante_stimato(int carburante_stimato) {
+    public void setCarburante_stimato(double carburante_stimato) {
         this.carburante_stimato = carburante_stimato;
     }
 

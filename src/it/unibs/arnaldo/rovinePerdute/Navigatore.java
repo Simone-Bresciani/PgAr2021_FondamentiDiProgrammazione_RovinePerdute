@@ -19,7 +19,7 @@ public class Navigatore {
         Map<Luogo, NodoEsteso> nodi_visitati = new HashMap<>();
         double carburante = calcolaCarburante(luogo_partenza, luogo_arrivo, veicolo.getTipologia());
         //creo il primo nodo con formazioni aggiuntive, sarà il nodo di luogo_partenza
-        NodoEsteso nodo_partenza = new NodoEsteso(luogo_partenza, null, 0, carburante_al_termine.calcolaCarburante(luogo_partenza, luogo_arrivo, veicolo.getTipologia()));
+        NodoEsteso nodo_partenza = new NodoEsteso(luogo_partenza, null, 0d, carburante);
         //lo aggiungo al percorso
         percorso_queue.add(nodo_partenza);
         //lo aggiungo ai nodi visitati
@@ -53,9 +53,10 @@ public class Navigatore {
                         NodoEsteso nodo_esteso_default = new NodoEsteso(luogo_connesso);
                         //nodo del luogo_connesso, in caso non ci sia diventa un nodo esteso tramite il costruttore di default
                         NodoEsteso nodo_connesso = nodi_visitati.getOrDefault(luogo_connesso, nodo_esteso_default);
-
-                        int carburante_tappa_singola =  carburante_prossimo_nodo.calcolaCarburante(nodo_ripartenza.getLuogo_corrente(), luogo_connesso, veicolo.getTipologia());
-                        int carburante_fino_connessione = nodo_ripartenza.getCarburante_utilizzato() + carburante_tappa_singola;
+                        //aggiunta del nodo visitato
+                        nodi_visitati.put(luogo_connesso, nodo_connesso);
+                        double carburante_tappa_singola =  calcolaCarburante(nodo_ripartenza.getLuogo_corrente(), luogo_connesso, veicolo.getTipologia());
+                        double carburante_fino_connessione = nodo_ripartenza.getCarburante_utilizzato() + carburante_tappa_singola;
 
                         /*se sono già arrivato precedentemente al nodo connesso utilizzando meno carburante, allora non sarà la strada giusta
                           inizialmente il carburante utilizzato è = infininto, ogni volta che posso raggiungere il nodo conneso con meno carburante
