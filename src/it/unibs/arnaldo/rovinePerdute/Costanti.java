@@ -27,7 +27,7 @@ public class Costanti {
     public static final String COST = "cost";
     public static final String CITIES = "cities";
     //comunicazioni di inzio/fine lettura/scrittura file
-    public static final String INIZIO_FILE = "\nInizio a %s il file: %s\n";
+    public static final String INIZIO_FILE = "\nInizio a %s il file: %s ...\n";
     public static final String FINE_FILE = "\nFine della %s del file :)\n";
     public static final String LETTURA = "lettura";
     public static final String SCRITTURA = "scrittura";
@@ -38,6 +38,9 @@ public class Costanti {
     public static final String ERRORE_TIPOLOGIA = "Tipologia non esistente";
     public static final String ERRORE_INIZIALIZZAZIONE_WRITER = "Errore nell'inizializzazione del writer: %s\n";
     public static final String ERRORE_SCRITTURA_FILE = "Errore nella scrittura del file: %s\n";
+    //altro
+    public static final String ENCODING = "utf-8";
+    public static final String VERSION = "1.0";
 
     //GESTIONE MAIN
     //errori vari nel main

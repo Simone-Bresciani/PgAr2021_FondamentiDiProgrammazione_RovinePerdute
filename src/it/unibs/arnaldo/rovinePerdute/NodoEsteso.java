@@ -77,8 +77,10 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
             return 1;
         } else if (this.carburante_stimato < nodo_da_comparare.carburante_stimato) {
             return -1;
-        } else {
-            return 0;
-        }
+        } else if (this.getLuogo_corrente().getId() > nodo_da_comparare.getLuogo_corrente().getId()){
+            return -1;
+        }else if(this.getLuogo_corrente().getId() < nodo_da_comparare.getLuogo_corrente().getId()){
+            return 1;
+        }else return 0;
     }
 }

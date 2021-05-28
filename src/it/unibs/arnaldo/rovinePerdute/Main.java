@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+
         //messaggio di benvenuto
         benvenuto();
 
@@ -47,20 +48,6 @@ public class Main {
 
         //scrivo il file
         ScritturaFileXML.scriviPercorso(veicolo_metztli, veicolo_tonathiu);
-
-        /*
-        for (Luogo luogo : percorso_metztli){
-            System.out.println(luogo.getId());
-        }
-        System.out.println(percorso_metztli.size());
-        System.out.println(veicolo_metztli.getFuel());
-
-        for (Luogo luogo : percorso_tonathiu){
-            System.out.println(luogo.getId());
-        }
-        System.out.println(percorso_tonathiu.size());
-        System.out.println(veicolo_tonathiu.getFuel());
-        */
     }
 
     /**

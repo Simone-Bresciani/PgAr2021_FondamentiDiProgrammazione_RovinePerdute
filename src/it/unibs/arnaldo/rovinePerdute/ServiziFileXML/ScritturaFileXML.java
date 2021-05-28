@@ -16,8 +16,8 @@ public class ScritturaFileXML {
         XMLStreamWriter xmlw = null;
         try {
             xmlof = XMLOutputFactory.newInstance();
-            xmlw = xmlof.createXMLStreamWriter(new FileOutputStream(Costanti.FILE_PERCORSO), "utf-8");
-            xmlw.writeStartDocument("utf-8", "1.0");
+            xmlw = xmlof.createXMLStreamWriter(new FileOutputStream(Costanti.FILE_PERCORSO), Costanti.ENCODING);
+            xmlw.writeStartDocument(Costanti.ENCODING, Costanti.VERSION);
         } catch (Exception e) {
             System.out.printf(Costanti.ERRORE_INIZIALIZZAZIONE_WRITER, e.getMessage());
         }
