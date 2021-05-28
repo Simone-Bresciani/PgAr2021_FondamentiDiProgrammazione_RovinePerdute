@@ -11,6 +11,13 @@ public class Navigatore {
         this.grafo = grafo;
     }
 
+    /**
+     * <h3>Metodo per il calcolo del cammino minimo (in base alla tipologia del veicolo che lo percorerrà) tra due luoghi</h3>
+     * @param luogo_partenza corrisponde al campo base
+     * @param luogo_arrivo corrisponde alla rovina perduta
+     * @param veicolo ovvero il veicolo utilizzato (quello di metztli oppure tonathiu)
+     * @return
+     */
     public ArrayList<Luogo> trovaPercorso(Luogo luogo_partenza, Luogo luogo_arrivo, Veicolo veicolo){
         //creo una Queue che sarà il mio percorso
         Queue<NodoEsteso> percorso_queue = new PriorityQueue<>();
@@ -76,6 +83,14 @@ public class Navigatore {
         throw new IllegalStateException(Costanti.ERRORE_STRADA);
     }
 
+    /**
+     * <h3>Metodo che calcola il carburante tra due luoghi, in base alla tipologia del veicolo<br>
+     *     visto che hanno modi differenti di condumare il carburante</h3>
+     * @param luogo_partenza
+     * @param luogo_arrivo
+     * @param tipologia ovvero la tipologia del veicolo (metztli o tonathiu)
+     * @return
+     */
     private static double calcolaCarburante(Luogo luogo_partenza, Luogo luogo_arrivo, String tipologia){
         switch (tipologia){
             case Costanti.METZTLI:
