@@ -1,6 +1,6 @@
 package it.unibs.arnaldo.rovinePerdute;
-
-public class NodoEsteso implements Comparable<NodoEsteso>{
+//implements Comparable<NodoEsteso>
+public class NodoEsteso {
 
     //attributi
     private final Luogo luogo_corrente;
@@ -71,7 +71,7 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
      *        -1 - se il nodo passato come paramentro utilizza meno carburante <br>
      *         0 - se utilizzano lo stesso carburante per arrivare alla fine
      */
-    @Override
+ /*    @Override
     public int compareTo(NodoEsteso nodo_da_comparare) {
         if (this.carburante_stimato > nodo_da_comparare.carburante_stimato) {
             return 1;
@@ -83,4 +83,6 @@ public class NodoEsteso implements Comparable<NodoEsteso>{
             return 1;
         }else return 0;
     }
+
+  */
 }

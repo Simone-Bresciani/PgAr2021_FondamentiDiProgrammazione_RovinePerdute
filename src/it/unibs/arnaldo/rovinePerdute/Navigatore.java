@@ -20,7 +20,9 @@ public class Navigatore {
      */
     public ArrayList<Luogo> trovaPercorso(Luogo luogo_partenza, Luogo luogo_arrivo, Veicolo veicolo){
         //creo una Queue che sarà il mio percorso
-        PriorityQueue<NodoEsteso> percorso_queue = new PriorityQueue<>();
+//        Comparator<NodoEsteso> comparatore = new ComparatoreNodi();
+//        PriorityQueue<NodoEsteso> percorso_queue = new PriorityQueue<>(comparatore);
+        ArrayList<NodoEsteso> percorso_array = new ArrayList<>();
         //creo una Map che associa al Luogo il suo NodoEsteso, ovvero il Luogo con le info aggiuntive
         //questa map salverà tutti i luoghi visitati fin ora
         Map<Luogo, NodoEsteso> nodi_visitati = new HashMap<>();
@@ -28,18 +30,17 @@ public class Navigatore {
         //creo il primo nodo con formazioni aggiuntive, sarà il nodo di luogo_partenza
         NodoEsteso nodo_partenza = new NodoEsteso(luogo_partenza, null, 0d, carburante);
         //lo aggiungo al percorso
-        percorso_queue.add(nodo_partenza);
+        percorso_array.add(0, nodo_partenza);
         //lo aggiungo ai nodi visitati
         nodi_visitati.put(luogo_partenza, nodo_partenza);
 
         //ciclo fino a quando ci sono elementi
-        while (!percorso_queue.isEmpty()){
-
-            System.out.println(percorso_queue.peek().getLuogo_corrente().getId() +"  " +  percorso_queue.peek().getCarburante_utilizzato());
-
-
-            //prelevo il primo nodo della coda(quello più vicino alle rovine perdute)
-            NodoEsteso nodo_ripartenza = percorso_queue.poll();
+        while (!percorso_array.isEmpty()){
+            riordina(percorso_array);
+            //prelevo il primo nodo dell'array
+            NodoEsteso nodo_ripartenza = percorso_array.get(0);
+            System.out.println(percorso_array.get(0).getLuogo_corrente().getId());
+            percorso_array.remove(0);
             //controllo che il luogo selezionato corrisponda al luogo di arrivo
             if(nodo_ripartenza.getLuogo_corrente().equals(luogo_arrivo)){
                 ArrayList<Luogo> strada = new ArrayList<>();
@@ -78,7 +79,13 @@ public class Navigatore {
                     nodo_connesso.setLuogo_precedente(nodo_ripartenza.getLuogo_corrente());
                     nodo_connesso.setCarburante_utilizzato(carburante_fino_connessione);
                     nodo_connesso.setCarburante_stimato(carburante_fino_connessione + calcolaCarburante(luogo_connesso, luogo_arrivo, veicolo.getTipologia()));
-                    percorso_queue.add(nodo_connesso);
+                    int id_nodo_prec = nodo_connesso.getLuogo_corrente().getId();
+                    for (int i=0; i<percorso_array.size(); i++){
+                        if (percorso_array.get(i).getLuogo_corrente().getId() == id_nodo_prec){
+                            percorso_array.remove(percorso_array.get(i));
+                        }
+                    }
+                    percorso_array.add(nodo_connesso);
                 }
             }
         }
@@ -109,4 +116,67 @@ public class Navigatore {
         }
     }
 
+    /**
+     * <h3>Metodo per l'ordinamento dell'array in base al consumo instantaneo</h3>
+     * @param array_nodi ovvero i nodi dell'array
+     */
+    private static void riordina(ArrayList<NodoEsteso> array_nodi){
+        divide(0, array_nodi.size()-1, array_nodi);
+    }
+
+    private static void divide(int startIndex,int endIndex, ArrayList<NodoEsteso> array_nodi){
+        //Divide till you breakdown your list to single element
+        if(startIndex<endIndex && (endIndex-startIndex)>=1){
+            int mid = (endIndex + startIndex)/2;
+            divide(startIndex, mid, array_nodi);
+            divide(mid+1, endIndex, array_nodi);
+            //merging Sorted array produce above into one sorted array
+            merger(startIndex,mid,endIndex, array_nodi);
+        }
+    }
+    private static void merger(int startIndex,int midIndex,int endIndex, ArrayList<NodoEsteso> array_nodi){
+
+        //Below is the mergedarray that will be sorted array Array[i-midIndex] , Array[(midIndex+1)-endIndex]
+        ArrayList<NodoEsteso> mergedSortedArray = new ArrayList<NodoEsteso>();
+
+        int leftIndex = startIndex;
+        int rightIndex = midIndex+1;
+
+        while(leftIndex<=midIndex && rightIndex<=endIndex){
+            if(array_nodi.get(leftIndex).getCarburante_stimato()<array_nodi.get(rightIndex).getCarburante_stimato()){
+                mergedSortedArray.add(array_nodi.get(leftIndex));
+                leftIndex++;
+            }else if(array_nodi.get(leftIndex).getCarburante_stimato()>array_nodi.get(rightIndex).getCarburante_stimato()){
+                mergedSortedArray.add(array_nodi.get(rightIndex));
+                rightIndex++;
+            }else{
+                if(array_nodi.get(leftIndex).getLuogo_corrente().getId()>array_nodi.get(rightIndex).getLuogo_corrente().getId()){
+                    mergedSortedArray.add(array_nodi.get(leftIndex));
+                    leftIndex++;
+                }else {
+                    mergedSortedArray.add(array_nodi.get(rightIndex));
+                    rightIndex++;
+                }
+            }
+        }
+
+        //Either of below while loop will execute
+        while(leftIndex<=midIndex){
+            mergedSortedArray.add(array_nodi.get(leftIndex));
+            leftIndex++;
+        }
+
+        while(rightIndex<=endIndex){
+            mergedSortedArray.add(array_nodi.get(rightIndex));
+            rightIndex++;
+        }
+
+        int i = 0;
+        int j = startIndex;
+        //Setting sorted array to original one
+        while(i<mergedSortedArray.size()){
+            array_nodi.set(j, mergedSortedArray.get(i++));
+            j++;
+        }
+    }
 }
