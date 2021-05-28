@@ -8,12 +8,14 @@ public class Veicolo{
     private ArrayList<Luogo> route;
     private String tipologia;
 
+    //Metodo costruttore
     public Veicolo(ArrayList<Luogo> route, String tipologia) {
         this.fuel = 0d;
         this.route = route;
         this.tipologia = tipologia;
     }
 
+    //GETTERS AND SETTERS
     public double getFuel() {
         return fuel;
     }
