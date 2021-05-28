@@ -9,29 +9,46 @@ public class Main {
     public static void main(String[] args) {
         //messaggio di benvenuto
         benvenuto();
+
         //creazione e stampa menu
         MyMenu menu_num_citta = nuovoMenu(Costanti.NUM_CITTA);
         menu_num_citta.stampaMenuSenzaUscita();
+
         //scelta numero delle città
         int num_citta = InputDati.leggiInteroPositivo(Costanti.INSERIMENTO_NUM_CITTA);
         while (!controllaNumCitta(num_citta)){
             System.out.println(Costanti.ERRORE_NUM_CITTA);
             num_citta = InputDati.leggiInteroPositivo(Costanti.INSERIMENTO_NUM_CITTA);
         };
+
         //genera grafo
         Grafo grafo = LetturaFileXML.leggiMappa(fileRoute(num_citta));
+
         //genera luogo della partenza(sarà sempre il campo base con id=0) e dell'arrivo(con id=dimensione-1)
         Luogo partenza = grafo.getNodo(0);
         Luogo arrivo = grafo.getNodo(grafo.getNumeroNodi()-1);
+
         //genera navigatore
         Navigatore navigatore = new Navigatore(grafo);
+
         //genera veicolo
         Veicolo veicolo_metztli = new Veicolo(null, Costanti.METZTLI);
         Veicolo veicolo_tonathiu = new Veicolo(null, Costanti.TONATHIU);
+
         //calcola il percorso
+        System.out.printf(Costanti.CALCOLO_IN_CORSO, veicolo_metztli.getTipologia());
         ArrayList<Luogo> percorso_metztli = navigatore.trovaPercorso(partenza, arrivo, veicolo_metztli);
+        System.out.printf(Costanti.CALCOLO_IN_CORSO, veicolo_tonathiu.getTipologia());
         ArrayList<Luogo> percorso_tonathiu = navigatore.trovaPercorso(partenza, arrivo, veicolo_tonathiu);
 
+        //aggiungo il percorso ai veicoli
+        veicolo_metztli.setRoute(percorso_metztli);
+        veicolo_tonathiu.setRoute(percorso_tonathiu);
+
+        //scrivo il file
+        ScritturaFileXML.scriviPercorso(veicolo_metztli, veicolo_tonathiu);
+
+        /*
         for (Luogo luogo : percorso_metztli){
             System.out.println(luogo.getId());
         }
@@ -43,6 +60,7 @@ public class Main {
         }
         System.out.println(percorso_tonathiu.size());
         System.out.println(veicolo_tonathiu.getFuel());
+        */
     }
 
     /**
@@ -78,6 +96,9 @@ public class Main {
         else return false;
     }
 
+    /**
+     * <h3>Metodo per la stampa di una comunicazione di benvenuto</h3>
+     */
     private static void benvenuto(){
         System.out.println(Costanti.CORNICE_SUP);
         System.out.printf("|\t"+Costanti.BENVENUTO+"\t|\n");

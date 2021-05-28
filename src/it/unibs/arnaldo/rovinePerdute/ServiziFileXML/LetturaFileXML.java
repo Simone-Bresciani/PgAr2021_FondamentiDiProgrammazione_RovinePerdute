@@ -17,7 +17,7 @@ public class LetturaFileXML {
      * @return Grafo che identifica l'intera mappa
      */
     public static Grafo leggiMappa(String filename){
-        XMLInputFactory xmlif = null;
+        XMLInputFactory xmlif;
         XMLStreamReader xmlreader = null;
         //creo un Set di luoghi, e un Map che rappresenta le connessioni, che avrà come key l'id del luogo e come value le sue connessioni, ovvero un set di id degli altri luoghi
         Set<Luogo> lista_luoghi = new HashSet<>();
@@ -47,7 +47,7 @@ public class LetturaFileXML {
 
                     //evento inzio lettura documento
                     case XMLStreamConstants.START_DOCUMENT:
-                        System.out.printf(Costanti.INZIO_LETTURA_DOC, filename);
+                        System.out.printf(Costanti.INIZIO_FILE, Costanti.LETTURA, filename);
                         break;
 
                     //evento di inzio lettura elemento
@@ -114,7 +114,7 @@ public class LetturaFileXML {
                 }
                 xmlreader.next();
             }
-            System.out.println(Costanti.FINE_LETTURA_DOC);
+            System.out.printf(Costanti.FINE_FILE, Costanti.LETTURA);
         } catch (XMLStreamException e) {
             System.out.printf(Costanti.ERRORE_LETTURA_FILE, filename, e.getMessage());
         }

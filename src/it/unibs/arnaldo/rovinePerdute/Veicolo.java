@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Veicolo{
     //ATTRIBUTI
     private double fuel;
-    private ArrayList<Integer> route;
+    private ArrayList<Luogo> route;
     private String tipologia;
 
-    public Veicolo(ArrayList<Integer> route, String tipologia) {
+    public Veicolo(ArrayList<Luogo> route, String tipologia) {
         this.fuel = 0d;
         this.route = route;
         this.tipologia = tipologia;
@@ -19,14 +19,15 @@ public class Veicolo{
     }
 
     public void setFuel(double fuel) {
-        this.fuel = fuel;
+        //arrotondo il numero a 2 numeri decimali
+        this.fuel = Math.round(fuel * 100.0) / 100.0;
     }
 
-    public ArrayList<Integer> getRoute() {
+    public ArrayList<Luogo> getRoute() {
         return route;
     }
 
-    public void setRoute(ArrayList<Integer> route) {
+    public void setRoute(ArrayList<Luogo> route) {
         this.route = route;
     }
 
