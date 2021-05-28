@@ -7,6 +7,10 @@ public class Navigatore {
     //ATTRIBUTI
     private final Grafo grafo;
 
+    /**
+     * <h3>Metodo costruttore</h3>
+     * @param grafo grafo rappresentante la mappa su cui si sposta il navigatore
+     */
     public Navigatore(Grafo grafo) {
         this.grafo = grafo;
     }
